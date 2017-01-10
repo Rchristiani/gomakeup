@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 )
 
 //Product struct
@@ -35,8 +36,15 @@ type ProductColor struct {
 const apiURL string = "http://makeup-api.herokuapp.com/api/v1/products.json"
 
 // GetMakeup used to get makeup from API
-func GetMakeup() []Product {
-	makeupRes, _ := http.Get(apiURL)
+func GetMakeup(query ...map[string]string) []Product {
+
+	queryParams := url.Values{}
+
+	for key, value := range query[0] {
+		queryParams.Set(key, value)
+	}
+
+	makeupRes, _ := http.Get(apiURL + "?" + queryParams.Encode())
 	defer makeupRes.Body.Close()
 
 	makeBytes, _ := ioutil.ReadAll(makeupRes.Body)
