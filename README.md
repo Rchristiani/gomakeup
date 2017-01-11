@@ -34,13 +34,13 @@ type ProductColor struct {
 
 ### Methods
 
-`makeup.GetMakeUp(query ...map[string]string) returns []Product`
+`gomakeup.GetMakeUp(query ...map[string]string) returns []Product`
 
 The `GetMakeUp` method accepts a map that is made up of the params for the api. Even though it is variadic, the method only really accepts the one map.
 
 Example:
 ```go
-makeupRes :=  makeup.GetMakeup(map[string]string{
+makeupRes :=  gomakeup.GetMakeup(map[string]string{
 	"product_type": "blush",
 	"product_category": "powder",
 })
