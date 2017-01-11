@@ -1,4 +1,4 @@
-package makeup
+package gomakeup
 
 import (
 	"encoding/json"
